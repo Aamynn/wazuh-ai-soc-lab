@@ -1,5 +1,7 @@
 # Wazuh AI SOC Lab
 
+[![Tests](https://github.com/Aamynn/wazuh-ai-soc-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/Aamynn/wazuh-ai-soc-lab/actions/workflows/tests.yml)
+
 **From security events to an evidence-linked investigation.**
 
 A personal project rebuilding a historical Wazuh + ELK SIEM study as a testable security engineering lab. The first release provides a runnable SSH correlation demo, an optional local LLM analysis adapter, and a documented path to live Wazuh integration.

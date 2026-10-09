@@ -1,5 +1,9 @@
 # Validation and evaluation
 
+## Initial validation record — 2026-10-09
+
+All 22 functional tests passed locally on Python 3.9.6 and in [GitHub Actions run 1](https://github.com/Aamynn/wazuh-ai-soc-lab/actions/runs/37970812079) on Python 3.9, 3.12, and 3.13 for commit `051fc8e8e0296c8991a19ecacab948e69765eaa2`. Both fixture commands passed in every CI job. Consult the workflow badge for later revisions. This verifies the implemented starter, not a live deployment or model quality.
+
 ## Reproduce implementation checks
 
 ```bash

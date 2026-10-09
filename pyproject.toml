@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wazuh-ai-soc-lab"
+dynamic = ["version"]
+description = "Evidence-linked SSH investigations with optional local AI analysis"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+keywords = ["siem", "security", "wazuh", "incident-response"]
+
+[project.urls]
+Repository = "https://github.com/Aamynn/wazuh-ai-soc-lab"
+Issues = "https://github.com/Aamynn/wazuh-ai-soc-lab/issues"
+
+[project.scripts]
+soc-lab = "soc_lab.__main__:main"
+
+[tool.setuptools]
+packages = ["soc_lab"]
+
+[tool.setuptools.dynamic]
+version = {attr = "soc_lab.__version__"}
+
+[tool.setuptools.package-data]
+soc_lab = ["resources/*.md", "resources/*.txt"]

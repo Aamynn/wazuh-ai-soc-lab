@@ -12,3 +12,6 @@ artifacts/
 .DS_Store
 .coverage
 htmlcov/
+build/
+dist/
+*.egg-info/

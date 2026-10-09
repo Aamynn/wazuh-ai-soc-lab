@@ -12,9 +12,10 @@ Inspired by a Wazuh + ELK SIEM study, the project explores detection engineering
 
 - Detect repeated SSH failures followed by a successful login for the same host, account, and source IP.
 - Produce a chronological evidence timeline and investigation guidance.
+- Export JSON or readable Markdown reports with configurable detection thresholds.
 - Generate optional local AI explanations through Ollama.
 - Validate evidence references and retain a deterministic analysis if AI fails.
-- Run 22 automated tests, with CI covering Python 3.9, 3.12, and 3.13.
+- Run automated tests and package-install checks in GitHub Actions.
 
 Investigations require human review. The application does not execute response actions.
 
@@ -29,6 +30,8 @@ python3 -m soc_lab --input sample-data/ssh-sequence.jsonl
 ```
 
 The sample produces **one investigation with six evidence references**: five failed logins followed by a success within five minutes. Output is JSON; the default explanation is rule-based.
+
+Add `--format markdown` for a readable report, or view the [sample investigation](docs/examples/ssh-investigation.md). See [usage](docs/usage.md) to install the `soc-lab` command, save reports, and tune detections.
 
 Run the tests:
 
@@ -51,11 +54,13 @@ Use a local-only Ollama configuration. Check `provider_used` and `fallback` in t
 
 | Guide | Contents |
 | --- | --- |
+| [Usage](docs/usage.md) | Installation, CLI options, and troubleshooting |
 | [Architecture](docs/architecture.md) | Data flow, event schema, and failure handling |
 | [Wazuh integration](docs/wazuh-integration.md) | Plan for connecting live telemetry |
 | [Evaluation](docs/evaluation.md) | Test results and AI evaluation approach |
 | [Threat model](docs/threat-model.md) | Security boundaries and limitations |
 | [Project analysis](docs/project-analysis.md) | Original study and design decisions |
 | [Roadmap](ROADMAP.md) | Next milestones |
+| [Changelog](CHANGELOG.md) | Implementation changes |
 
 For project origins and licensing status, see [NOTICE](NOTICE.md). Contribution guidance is in [CONTRIBUTING](CONTRIBUTING.md).

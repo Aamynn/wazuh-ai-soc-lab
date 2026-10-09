@@ -2,7 +2,7 @@
 
 ## Implemented path
 
-The CLI reads at most 2 MB and 2,000 events. Each record is validated and projected onto six allowed fields. Unknown fields are dropped, identifiers are restricted, IP addresses are parsed, timestamps require a timezone, and duplicate IDs fail the batch. Invalid input exits with code 2 before inference.
+The CLI and installable `soc-lab` command read at most 2 MB and 2,000 events. Each record is validated and projected onto six allowed fields. Unknown fields are dropped, identifiers are restricted, IP addresses are parsed, timestamps require a timezone, and duplicate IDs fail the batch. Invalid input exits with code 2 before inference.
 
 ```json
 {"id":"event-001","timestamp":"2026-01-01T10:00:00Z","host":"lab-linux","user":"demo-user","source_ip":"192.0.2.10","event_type":"ssh_failed"}
@@ -12,7 +12,11 @@ Supported types: `ssh_failed`, `ssh_success`. Identifiers permit ASCII letters, 
 
 LAB-SSH-001 groups events by exact host, account, and canonical source IP. A success qualifies when at least five failures occur in `[success - 300 seconds, success)`. Equal timestamps are not assumed to establish order. A qualifying success creates one investigation; overlapping successes may share evidence. No IP blocking or account changes occur.
 
-At most 20 investigations and 100 evidence events per investigation are accepted. Overflow fails clearly instead of silently truncating evidence or creating unbounded inference work. The report includes the SHA-256 of the original input bytes, normalized evidence, and the analysis provenance. The input hash is not an authenticity signature or forensic chain of custody.
+The default threshold and window can be configured with `--threshold` (1–99) and `--window-seconds` (1–86,400). Correlation uses a sliding window after sorting each entity group. Successes are processed before equal-time failures. Duplicate JSON fields and non-standard constants are rejected.
+
+At most 20 investigations and 100 evidence events per investigation are accepted. Overflow fails clearly instead of silently truncating evidence or creating unbounded inference work. Reports support JSON and escaped Markdown. `--output` creates a new file without overwriting existing files. See [usage](usage.md).
+
+The JSON report includes detection configuration, the SHA-256 of the original input bytes, normalized evidence, and the analysis provenance. The input hash is not an authenticity signature or forensic chain of custody.
 
 The bundled runbook is selected by the implemented SSH use case. This is a fixed context lookup, not a general retrieval engine. The optional model receives the runbook, output schema, and normalized events. JSON output is validated for required fields, limits, permitted assessments, known references, sequence evidence, and required human review.
 

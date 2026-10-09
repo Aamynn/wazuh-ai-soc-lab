@@ -13,7 +13,7 @@ Source events, account identifiers, hostnames, investigation conclusions, and mo
 | Sensitive content | Synthetic fixtures, strict input projection, no raw-provider errors in output | Allowed identity fields can still be sensitive in real data |
 | Excessive processing | Input/event/incident/evidence/output limits and request timeout | Per-read timeout is not a strict whole-job deadline against a malicious streaming server |
 | Provider failure | Clearly labeled baseline fallback | Consumer must inspect provenance rather than assume AI succeeded |
-| Unsafe future rendering | Output is JSON only | Future UIs must escape content and never execute suggestions |
+| Unsafe future rendering | Markdown escapes raw HTML and formatting characters; JSON is available | Future UIs must escape content and never execute suggestions |
 
 The repository intentionally has no hosted API, authentication service, cloud credential storage, response automation, or live indexer access. Add a fresh security review when introducing any of them.
 

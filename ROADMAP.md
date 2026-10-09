@@ -8,7 +8,15 @@
 - [x] Automated functional tests and CI workflow.
 - [x] Original-study analysis, attribution, and limitations.
 
-## 0.2 — Live Linux/Wazuh lab
+## 0.2 — CLI and reliability
+
+- [x] Installable command with packaged resources.
+- [x] Markdown reports and non-overwriting file output.
+- [x] Configurable thresholds and time windows.
+- [x] Sliding-window correlation and stricter JSON handling.
+- [x] Expanded regression tests and package-install CI.
+
+## Next — Live Linux/Wazuh lab
 
 - [ ] Pin and record a supported Wazuh component set and isolated lab resources.
 - [ ] Deploy one Linux endpoint and capture sanitized failure/success fixtures.
@@ -18,7 +26,7 @@
 
 **Acceptance:** a fresh lab reproduces the documented sequence with traceable source events; stopping inference does not stop collection.
 
-## 0.3 — Detection coverage
+## Later — Detection coverage
 
 - [ ] Windows privileged-group membership changes.
 - [ ] Defined suspicious PowerShell behavior with benign controls.
@@ -28,7 +36,7 @@
 
 **Acceptance:** every scenario has prerequisites, fixtures, expected outputs, false-positive notes, and an investigation runbook.
 
-## 0.4 — Evaluated AI investigations
+## Later — Evaluated AI investigations
 
 - [ ] Test a real locally installed model and record its exact identity/digest.
 - [ ] Add reviewed runbook retrieval beyond the fixed SSH selection.

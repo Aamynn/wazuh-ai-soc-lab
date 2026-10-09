@@ -4,6 +4,9 @@ import hashlib
 import json
 import re
 from pathlib import Path
+from http.client import HTTPException
+
+from .core import strict_json
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
 
 PROMPT_VERSION = "1"
@@ -36,7 +39,7 @@ def validate_analysis(value, incident):
         raise ValueError("human review must remain required")
 
     def valid_text(text):
-        return isinstance(text, str) and 1 <= len(text.strip()) <= 2000 and not any(ord(char) < 32 and char not in "\n\t" for char in text)
+        return isinstance(text, str) and bool(text.strip()) and len(text) <= 2000 and not any(ord(char) < 32 and char not in "\n\t" for char in text)
 
     if not valid_text(value["summary"]):
         raise ValueError("invalid summary")
@@ -93,13 +96,13 @@ def local_chat(payload):
         raw = response.read(128_001)
     if len(raw) > 128_000:
         raise ValueError("model response exceeds size limit")
-    envelope = json.loads(raw)
+    envelope = strict_json(raw)
     if not isinstance(envelope, dict) or envelope.get("done") is not True:
         raise ValueError("model response is incomplete")
     message = envelope.get("message")
     if not isinstance(message, dict) or not isinstance(message.get("content"), str):
         raise ValueError("model response is missing content")
-    return json.loads(message["content"])
+    return strict_json(message["content"])
 
 
 def analyze(incident, provider="baseline", model=None, transport=None):
@@ -118,7 +121,7 @@ def analyze(incident, provider="baseline", model=None, transport=None):
         try:
             result = validate_analysis((transport or local_chat)(payload), incident)
             metadata["provider_used"] = "ollama"
-        except (OSError, ValueError, TypeError, KeyError) as exc:
+        except (OSError, ValueError, TypeError, KeyError, HTTPException, RecursionError) as exc:
             # Never leak response bodies or arbitrary provider exception text.
             metadata.update(fallback=True, failure_type=type(exc).__name__)
     return {"analysis": result, "provenance": metadata}

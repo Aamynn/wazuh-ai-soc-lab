@@ -47,7 +47,7 @@ def main(argv=None):
             with args.output.open("x", encoding="utf-8") as handle:
                 handle.write(rendered.rstrip() + "\n")
         else:
-            print(rendered)
+            print(rendered.rstrip())
     except OSError as exc:
         print("error writing report: " + str(exc), file=sys.stderr)
         return 2

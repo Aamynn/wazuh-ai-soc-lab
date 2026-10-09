@@ -6,7 +6,7 @@ All 22 functional tests passed locally on Python 3.9.6 and in [GitHub Actions ru
 
 ## 0.2 validation
 
-The expanded suite contains 36 tests, including randomized comparison against a reference correlation algorithm, JSON ambiguity rejection, output escaping, file preservation, interrupted model responses, and limit handling. CI also installs the package and runs it outside the checkout to verify packaged resources. No performance speedup percentage or real-model accuracy is claimed.
+The expanded suite contains 37 tests, including randomized comparison against a reference correlation algorithm, JSON ambiguity rejection, output escaping, file preservation, consistent report exports, interrupted model responses, and limit handling. CI also installs the package and runs it outside the checkout to verify packaged resources. No performance speedup percentage or real-model accuracy is claimed.
 
 ## Reproduce implementation checks
 

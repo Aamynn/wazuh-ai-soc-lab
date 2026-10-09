@@ -114,6 +114,16 @@ class ImprovementTests(unittest.TestCase):
             self.assertEqual(code, 2)
             self.assertEqual(path.read_text(), first)
 
+    def test_markdown_stdout_matches_saved_file_and_example(self):
+        code, output, error = self.run_cli("--input", str(SAMPLE), "--format", "markdown")
+        self.assertEqual(code, 0, error)
+        self.assertEqual(output, (ROOT / "docs/examples/ssh-investigation.md").read_text())
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "report.md"
+            code, _, error = self.run_cli("--input", str(SAMPLE), "--format", "markdown", "--output", str(path))
+            self.assertEqual(code, 0, error)
+            self.assertEqual(path.read_text(), output)
+
     def test_empty_markdown_report_does_not_claim_safety(self):
         code, output, _ = self.run_cli("--input", str(SAMPLE), "--threshold", "6", "--format", "markdown")
         self.assertEqual(code, 0)

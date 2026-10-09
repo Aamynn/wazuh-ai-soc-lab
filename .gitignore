@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+artifacts/
+*.pem
+*.key
+*.p12
+*.pfx
+.DS_Store
+.coverage
+htmlcov/

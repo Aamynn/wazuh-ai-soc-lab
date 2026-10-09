@@ -1,0 +1,2 @@
+{"id":"benign-failure-001","timestamp":"2026-01-01T10:00:00Z","host":"lab-linux","user":"demo-user","source_ip":"192.0.2.20","event_type":"ssh_failed"}
+{"id":"benign-success-001","timestamp":"2026-01-01T10:00:15Z","host":"lab-linux","user":"demo-user","source_ip":"192.0.2.20","event_type":"ssh_success"}

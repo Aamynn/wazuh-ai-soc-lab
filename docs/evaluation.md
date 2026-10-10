@@ -6,6 +6,8 @@ All 22 functional tests passed locally on Python 3.9.6 and in [GitHub Actions ru
 
 ## 0.2 validation
 
+Verified on 2026-10-10: [GitHub Actions run 5](https://github.com/Aamynn/wazuh-ai-soc-lab/actions/runs/37993502722) passed on Python 3.9, 3.12, and 3.13 for commit `f9891ddfd6f9bb0295b4467c4c057a58b23a0a46`. Each job passed the 37 tests, both fixture demos, Markdown report comparison, and installed-command checks outside the checkout. The earlier export mismatch is resolved.
+
 The expanded suite contains 37 tests, including randomized comparison against a reference correlation algorithm, JSON ambiguity rejection, output escaping, file preservation, consistent report exports, interrupted model responses, and limit handling. CI also installs the package and runs it outside the checkout to verify packaged resources. No performance speedup percentage or real-model accuracy is claimed.
 
 ## Reproduce implementation checks
